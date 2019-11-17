@@ -68,6 +68,9 @@ export default {
 					"useState",
 					"useEffect"
 				],
+                		"node_modules/react-is/index.js": [
+                    			"isValidElementType"
+				],
 				"node_modules/react-dom/index.js": ["render"]
 			}
 		}),
