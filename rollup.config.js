@@ -5,6 +5,10 @@ import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import babel from "rollup-plugin-babel";
 import replace from "rollup-plugin-replace";
+import postcss from 'rollup-plugin-postcss-modules'
+import autoprefixer from 'autoprefixer'
+
+# import typescript from 'rollup-plugin-typescript2' // support TS config?
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -17,6 +21,13 @@ export default {
 		file: "public/build/bundle.js"
 	},
 	plugins: [
+		postcss({
+		    extract: true,  // extracts to `${basename(dest)}.css`
+		    plugins: [autoprefixer()],
+		    writeDefinitions: true,
+		    // modules: { ... }
+		}),
+		// typescript(),
 		replace({
 			"process.env.NODE_ENV": JSON.stringify(production)
 		}),
